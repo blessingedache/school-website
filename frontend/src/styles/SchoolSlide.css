@@ -1,0 +1,107 @@
+.schoolslide-section {
+  padding: 4.2rem 1.2rem;
+  background: linear-gradient(135deg, #f7fbff 0%, #eef6ff 100%);
+  font-family: "Poppins", "Segoe UI", sans-serif;
+}
+
+.schoolslide-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.schoolslide-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.schoolslide-eyebrow {
+  display: inline-block;
+  margin: 0 0 0.5rem;
+  padding: 0.38rem 0.8rem;
+  border-radius: 999px;
+  background: #dcefff;
+  color: #16223f;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.schoolslide-title {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.7rem, 2.2vw, 2.4rem);
+  color: #16223f;
+}
+
+.schoolslide-subtitle {
+  margin: 0;
+  color: #54677a;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.schoolslide-carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.2rem;
+  box-shadow: 0 16px 36px rgba(15, 77, 142, 0.14);
+  background: #ffffff;
+}
+
+.schoolslide-track {
+  display: flex;
+  transition: transform 0.7s ease-in-out;
+}
+
+.schoolslide-slide {
+  min-width: 100%;
+}
+
+.schoolslide-slide img {
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+  display: block;
+}
+
+.schoolslide-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.schoolslide-dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  border: none;
+  border-radius: 999px;
+  background: #cddceb;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.schoolslide-dot.active {
+  transform: scale(1.15);
+  background: #16223f;
+}
+
+@media (max-width: 900px) {
+  .schoolslide-slide img {
+    height: 360px;
+  }
+}
+
+@media (max-width: 600px) {
+  .schoolslide-section {
+    padding: 3rem 0.9rem;
+  }
+
+  .schoolslide-slide img {
+    height: 260px;
+  }
+
+  .schoolslide-title {
+    font-size: 1.5rem;
+  }
+}

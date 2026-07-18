@@ -1,0 +1,122 @@
+.academics-section {
+  padding: 4.25rem 1.2rem;
+  background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  
+}
+
+.academics-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.academics-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.academics-eyebrow {
+  display: inline-block;
+  width: fit-content;
+  padding: 0.38rem 0.8rem;
+  border-radius: 999px;
+  background: #dcefff;
+  color: #16223f;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.academics-title {
+  margin: 0;
+  font-size: clamp(1.7rem, 2.3vw, 2.4rem);
+  line-height: 1.2;
+  color: #16223f;
+}
+
+.academics-text {
+  margin: 0;
+  color: #556878;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.academics-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 0.2rem;
+}
+
+.academics-pill {
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid #dfeefc;
+  color: #16223f;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.academics-button {
+  margin-top: 0.3rem;
+  align-self: flex-start;
+  border: none;
+  border-radius: 999px;
+  padding: 0.82rem 1.2rem;
+  background: linear-gradient(135deg, #16223f 0%, #16223f 100%);
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(15, 77, 142, 0.2);
+  transition: transform 0.25s ease;
+}
+
+.academics-button:hover {
+  transform: translateY(-2px);
+}
+
+.academics-media {
+  display: flex;
+  justify-content: center;
+}
+
+.academics-image {
+  width: 100%;
+  max-width: 520px;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 1.2rem;
+  box-shadow: 0 16px 36px rgba(15, 77, 142, 0.16);
+}
+
+@media (max-width: 900px) {
+  .academics-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .academics-image {
+    height: 320px;
+  }
+}
+
+@media (max-width: 600px) {
+  .academics-section {
+    padding: 3rem 0.9rem;
+  }
+
+  .academics-image {
+    height: 260px;
+  }
+
+  .academics-button {
+    width: 100%;
+    text-align: center;
+  }
+}

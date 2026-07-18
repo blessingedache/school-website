@@ -1,0 +1,724 @@
+/* @import "tailwindcss"; */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+
+/* ==========================================================================
+   Tokens
+   ========================================================================== */
+.navbar {
+  --color-bg: #fbf9f4;
+  --color-ink: #16223f;
+  --color-ink-soft: #4a5578;
+  --color-accent: #7a1f3d;
+  --color-accent-soft: #f1e3e7;
+  --color-border: #e6e1d6;
+  --font-display: "Playfair Display", "Poppins", "Times New Roman", serif;
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+/* ==========================================================================
+   Header shell
+   ========================================================================== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.navbar.is-scrolled {
+  background-color: #fbf9f4;
+  border-bottom-color: var(--color-border);
+  box-shadow: 0 6px 20px rgba(22, 34, 63, 0.06);
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+/* ==========================================================================
+   Brand
+   ========================================================================== */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.navbar-logo {
+  height: 60px;
+  width: 60px;
+  object-fit: contain;
+}
+
+.navbar-title {
+  display: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.2;
+  color: var(--color-ink);
+  letter-spacing: 0.01em;
+}
+
+@media (min-width: 640px) {
+  .navbar-title {
+    display: block;
+  }
+}
+
+/* ==========================================================================
+   Desktop links
+   ========================================================================== */
+.navbar-links {
+  display: none;
+}
+
+.navbar-links ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  font-family: "poppins", "Segoe UI", system-ui, sans-serif;
+}
+
+
+.navbar-link {
+  position: relative;
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--color-ink-soft);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease, letter-spacing 0.2s ease;
+}
+
+.navbar-link::before {
+  content: "";
+  position: absolute;
+  left: 0.9rem;
+  bottom: 0.3rem;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-accent);
+  transition: width 0.25s ease;
+}
+
+.navbar-link:hover,
+.navbar-link:focus-visible {
+  color: var(--color-accent);
+  letter-spacing: 0.04em;
+}
+
+.navbar-link:hover::before,
+.navbar-link:focus-visible::before {
+  width: calc(100% - 1.8rem);
+}
+
+.navbar-link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Desktop actions
+   ========================================================================== */
+.navbar-actions {
+  display: none;
+}
+
+.navbar-cta {
+  font-family: poppins, "Segoe UI", system-ui, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-bg);
+  background-color: var(--color-ink);
+  /* border: 1px solid var(--color-ink); */
+  border-radius: 5px;
+  padding: 0.5rem 1.3rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.cta-signinn{
+  font-family: poppins, "Segoe UI", system-ui, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-bg);
+  background-color: #7a1f3d;
+  /* border: 1px solid var(--color-ink); */
+  border-radius: 5px;
+  padding: 0.5rem 1.3rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.navbar-cta:hover,
+.navbar-cta:focus-visible {
+  background-color: green;
+  border-color: var(--color-accent);
+  color: #fff;
+}
+.cta-signinn:hover,
+.cta-signinn:focus-visible {
+  background-color: var(--color-ink);
+  border-color: var(--color-ink);
+  color: #fff;
+}
+
+/* .navbar-cta:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+} */
+/* .cta-signinn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+} */
+
+@media (min-width: 1024px) {
+  .navbar-links,
+  .navbar-actions {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+/* ==========================================================================
+   Mobile toggle
+   ========================================================================== */
+.navbar-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  font-size: 1.35rem;
+  color: var(--color-ink);
+  cursor: pointer;
+  padding: 0.4rem;
+}
+
+.navbar-toggle:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (min-width: 1024px) {
+  .navbar-toggle {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Mobile off-canvas overlay + panel
+   ========================================================================== */
+.navbar-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(22, 34, 63, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 55;
+}
+
+.navbar-overlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.navbar-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 65%;
+  max-width: 320px;
+  background-color: var(--color-bg);
+  border-left: 1px solid var(--color-border);
+  box-shadow: -8px 0 24px rgba(22, 34, 63, 0.15);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+}
+
+.navbar-panel.is-open {
+  transform: translateX(0);
+}
+
+.navbar-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.navbar-panel-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-ink);
+}
+
+.navbar-close {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--color-ink);
+  cursor: pointer;
+  padding: 0.35rem;
+}
+
+.navbar-close:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.navbar-panel-links {
+  list-style: none;
+  margin: 0 0 1.25rem 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.navbar-panel-links a {
+  display: block;
+  padding: 0.75rem 0.5rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  text-decoration: none;
+  border-radius: 3px;
+  transition: background-color 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+}
+
+.navbar-panel-links a:hover,
+.navbar-panel-links a:focus-visible {
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent);
+  padding-left: 0.9rem;
+}
+
+.navbar-cta--panel {
+  width: 100%;
+  margin-top: 20px;
+  /* margin-top: auto; */
+}
+.cta-signin{
+  background-color: #7a1f3d;
+}
+
+@media (min-width: 1024px) {
+  .navbar-overlay,
+  .navbar-panel {
+    display: none;
+  }
+}
+
+/* Hero section styles */
+/* ==========================================================================
+   Tokens (kept consistent with Navbar.css)
+   ========================================================================== */
+.hero {
+  --color-ink: #16223f;
+  --color-accent: #7a1f3d;
+  --color-accent-light: #9c3355;
+  --font-display: "poppins", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+/* ==========================================================================
+   Shell
+   ========================================================================== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  min-height: 480px;
+  max-height: 820px;
+  overflow: hidden;
+  background-color: var(--color-ink);
+}
+
+/* ==========================================================================
+   Horizontal image track
+   ========================================================================== */
+.hero-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.hero-slide {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+}
+
+.hero-image.is-active {
+  animation: hero-zoom 8s ease-out both;
+}
+
+@keyframes hero-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.09);
+  }
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(22, 34, 63, 0.55) 0%,
+    rgba(22, 34, 63, 0.72) 60%,
+    rgba(22, 34, 63, 0.85) 100%
+  );
+}
+
+/* ==========================================================================
+   Content (vertical slide-in on change)
+   ========================================================================== */
+.hero-content-wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5%;
+  pointer-events: none;
+}
+
+.hero-content {
+  max-width: 780px;
+  text-align: center;
+  color: #fff;
+  pointer-events: auto;
+}
+
+@keyframes hero-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(36px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Each piece animates in on its own, one after another */
+.hero-title,
+.hero-subtitle,
+.hero-btn {
+  opacity: 0;
+  animation: hero-slide-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-title {
+  animation-delay: 0.1s;
+}
+
+.hero-subtitle {
+  animation-delay: 0.28s;
+}
+
+.hero-btn {
+  animation-delay: 0.46s;
+}
+
+.hero-title {
+font-family: Poppins, Helvetica, Arial, Lucida, sans-serif;
+font-size: 65px;
+font-weight: 500;
+line-height: 67.2px;
+color: rgb(247, 247, 250);
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(1.5rem, 1.7vw, 1.1rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0 auto 1.75rem auto;
+  max-width: 620px;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.hero-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.hero-btn-primary,
+.hero-btn-secondary {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 0.8rem 1.9rem;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.hero-btn-primary {
+  background-color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  color: #fff;
+}
+
+.hero-btn-primary:hover,
+.hero-btn-primary:focus-visible {
+  background-color: var(--color-accent-light);
+  border-color: var(--color-accent-light);
+  transform: translateY(-2px);
+}
+
+.hero-btn-secondary {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  color: #fff;
+}
+
+.hero-btn-secondary:hover,
+.hero-btn-secondary:focus-visible {
+  background-color: #fff;
+  color: var(--color-ink);
+  transform: translateY(-2px);
+}
+
+.hero-btn-primary:focus-visible,
+.hero-btn-secondary:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Arrows
+   ========================================================================== */
+.hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: rgba(22, 34, 63, 0.35);
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  z-index: 5;
+}
+
+.hero-arrow:hover,
+.hero-arrow:focus-visible {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.hero-arrow:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.hero-arrow-left {
+  left: 1.25rem;
+}
+
+.hero-arrow-right {
+  right: 1.25rem;
+}
+
+/* ==========================================================================
+   Dots
+   ========================================================================== */
+.hero-dots {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 5;
+}
+
+.hero-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.2s ease, width 0.25s ease, border-radius 0.25s ease;
+}
+
+.hero-dot.is-active {
+  background-color: #fff;
+  width: 22px;
+  border-radius: 5px;
+}
+
+.hero-dot:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Auto-play progress bar
+   ========================================================================== */
+.hero-progress-track {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.18);
+  z-index: 5;
+}
+
+.hero-progress-bar {
+  height: 100%;
+  width: 0%;
+  background-color: var(--color-accent-light);
+  animation-name: hero-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes hero-progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   Responsive breakpoints
+   ========================================================================== */
+@media (max-width: 768px) {
+  .hero {
+    height: 78vh;
+    min-height: 420px;
+  }
+
+  .hero-content-wrapper {
+    padding: 0 6%;
+  }
+
+  .hero-btn {
+    flex-direction: column;
+    gap: 0.65rem;
+    width: 100%;
+  }
+
+  .hero-btn-primary,
+  .hero-btn-secondary {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .hero-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 0.85rem;
+  }
+
+  .hero-arrow-left {
+    left: 0.6rem;
+  }
+
+  .hero-arrow-right {
+    right: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: 70vh;
+    min-height: 380px;
+  }
+
+  .hero-content h1 {
+    letter-spacing: 0.01em;
+  }
+
+  .hero-arrow {
+    display: none;
+  }
+
+  .hero-dots {
+    bottom: 1rem;
+  }
+.hero-title {
+font-family: Poppins, Helvetica, Arial, Lucida, sans-serif;
+font-size: 35px;
+font-weight: 500;
+line-height: 35.2px;
+color: rgb(247, 247, 250);
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(1.2rem, 1.7vw, 1.1rem);
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0 auto 1.75rem auto;
+  max-width: 620px;
+}
+}
+
+/* Head Teacher Styles */
+
+

@@ -1,0 +1,176 @@
+.headteacher-section {
+  padding: 4rem 1.25rem;
+  background: linear-gradient(135deg, #f9f6ef 0%, #f4ebde 100%);
+  font-family: "Poppins", "Segoe UI", sans-serif;;
+}
+
+.headteacher-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+.headteacher-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.headteacher-image-card {
+  position: relative;
+  width: min(100%, 380px);
+  padding: 1rem;
+  border-radius: 1.75rem;
+  background: #fff;
+  box-shadow: 0 22px 45px rgba(22, 34, 63, 0.12);
+}
+
+.headteacher-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 1.25rem;
+  aspect-ratio: 4 / 5;
+}
+
+.headteacher-badge {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(122, 31, 61, 0.95);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.headteacher-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.headteacher-eyebrow {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #7a1f3d;
+}
+
+.headteacher-title {
+  margin: 0;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.2;
+  color: #16223f;
+}
+
+.headteacher-intro {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #4a5578;
+}
+
+.headteacher-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.headteacher-highlights li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: #24324f;
+  font-weight: 500;
+}
+
+.headteacher-highlights li::before {
+  content: "✓";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 50%;
+  background: #f1e3e7;
+  color: #7a1f3d;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.headteacher-signature {
+  margin-top: 0.5rem;
+  padding: 1rem 1.1rem;
+  border-left: 4px solid #7a1f3d;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 0.75rem;
+}
+
+.headteacher-signature h3 {
+  margin: 0 0 0.2rem;
+  font-size: 1.1rem;
+  color: #16223f;
+}
+
+.headteacher-signature p {
+  margin: 0;
+  color: #7a1f3d;
+  font-weight: 600;
+}
+
+.headteacher-cta {
+  width: fit-content;
+  padding: 0.85rem 1.2rem;
+  border-radius: 999px;
+  background: #16223f;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.headteacher-cta:hover,
+.headteacher-cta:focus-visible {
+  background: #7a1f3d;
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .headteacher-shell {
+    grid-template-columns: 1fr 1.1fr;
+    gap: 3rem;
+  }
+
+  .headteacher-visual {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 767px) {
+  .headteacher-section {
+    padding: 3rem 1rem;
+  }
+
+  .headteacher-image-card {
+    width: min(100%, 320px);
+  }
+
+  .headteacher-title {
+    font-size: 1.7rem;
+  }
+
+  .headteacher-intro {
+    font-size: 0.95rem;
+  }
+}

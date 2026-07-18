@@ -1,0 +1,148 @@
+.schooldrive-section {
+  padding: 4.5rem 1.25rem;
+  background: linear-gradient(135deg, #f7fbff 0%, #eef6ff 100%);
+  color: #16223f;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+}
+
+.schooldrive-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.schooldrive-intro {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 2.5rem;
+}
+
+.schooldrive-eyebrow {
+  display: inline-block;
+  margin: 0 0 0.6rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: #dcefff;
+  color: #16223f;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.schooldrive-title {
+  margin: 0 0 0.8rem;
+  font-size: clamp(1.9rem, 2.4vw, 2.6rem);
+  font-weight: 800;
+  color: #16223f;
+}
+
+.schooldrive-subtitle {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #16223f;
+}
+
+.schooldrive-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+.schooldrive-card {
+  background: #ffffff;
+  border: 1px solid #e3edf7;
+  border-radius: 1.1rem;
+  padding: 1.4rem;
+  box-shadow: 0 15px 35px rgba(19, 59, 101, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.schooldrive-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(19, 59, 101, 0.13);
+}
+
+.schooldrive-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #e3f2ff 0%, #d7ebff 100%);
+  margin-bottom: 1rem;
+}
+
+.schooldrive-icon {
+  font-size: 1.35rem;
+  color: #16223f;
+}
+
+.schooldrive-card-title {
+  margin: 0 0 0.65rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #10253c;
+}
+
+.schooldrive-card-text {
+  margin: 0;
+  font-size: 0.99rem;
+  line-height: 1.7;
+  color: #556878;
+}
+
+.schooldrive-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.schooldrive-button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.8rem 1.35rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: #ffffff;
+  background: linear-gradient(135deg,  #16223f 0%, #16333f 100%);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 12px 24px rgba(15, 77, 142, 0.2);
+}
+
+.schooldrive-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(15, 77, 142, 0.25);
+}
+
+@media (max-width: 900px) {
+  .schooldrive-grid {
+    grid-template-columns: 1fr;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .schooldrive-section {
+    padding: 3rem 0.9rem;
+  }
+
+  .schooldrive-card {
+    padding: 1.15rem;
+  }
+
+  .schooldrive-title {
+    font-size: 1.6rem;
+  }
+
+  .schooldrive-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .schooldrive-button {
+    width: 100%;
+  }
+}

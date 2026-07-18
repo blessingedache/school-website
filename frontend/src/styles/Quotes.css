@@ -1,0 +1,51 @@
+.quotes-section {
+  padding: 4rem 1.2rem;
+  background: linear-gradient(135deg, #f7fbff 0%, #eef6ff 100%);
+  font-family: "Poppins", "Segoe UI", sans-serif;
+}
+
+.quotes-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 1.25rem;
+  background: #ffffff;
+  box-shadow: 0 16px 38px rgba(15, 77, 142, 0.12);
+  border: 1px solid #e3edf7;
+  text-align: center;
+}
+
+.quotes-mark {
+  font-size: 1.6rem;
+  color: #16223f;
+}
+
+.quotes-text {
+font-family: Georgia, sans-serif;
+font-size: 46px;
+font-weight: 400;
+line-height: 67.2px;
+color: rgb(118, 118, 127);
+}
+
+.quotes-author {
+  margin: 0;
+  font-size: 0.98rem;
+  color: #5a6b7b;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .quotes-section {
+    padding: 3rem 0.9rem;
+  }
+
+  .quotes-container {
+    padding: 1.4rem;
+  }
+
+  .quotes-text {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+}

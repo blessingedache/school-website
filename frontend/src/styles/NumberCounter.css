@@ -1,0 +1,63 @@
+.numbercounter-section {
+  padding: 4rem 1.2rem;
+  background: linear-gradient(135deg, #f6fbff 0%, #edf5ff 100%);
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  color: #16223f;
+}
+
+.numbercounter-wrapper {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.numbercounter-card {
+  background: #ffffff;
+  border: 1px solid #e1ebf5;
+  border-radius: 1rem;
+  padding: 1.4rem 1rem;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(15, 77, 142, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.numbercounter-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 34px rgba(15, 77, 142, 0.15);
+}
+
+.numbercounter-value {
+  margin: 0 0 0.4rem;
+  font-size: clamp(1.8rem, 2.2vw, 2.4rem);
+  font-weight: 800;
+  color: #16223f;
+}
+
+.numbercounter-label {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #53677a;
+}
+
+@media (max-width: 900px) {
+  .numbercounter-wrapper {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .numbercounter-section {
+    padding: 3rem 0.9rem;
+  }
+
+  .numbercounter-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .numbercounter-card {
+    padding: 1.1rem 0.9rem;
+  }
+}
