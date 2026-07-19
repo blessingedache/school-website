@@ -85,12 +85,13 @@ export const registerStudent = async (req, res) => {
       avatar: avatarPath,
     });
 
-    // Send confirmation email, but don't let a failed email crash registration
-    try {
-      await sendRegistrationEmail(newStudent);
-    } catch (emailError) {
+   // Send confirmation email in the background — deliberately NOT awaited.
+    // Awaiting this would block the HTTP response until the email finishes
+    // (or times out), which can hang the request for a long time if Resend's
+    // API is slow to respond. Registration should never wait on email delivery.
+    sendRegistrationEmail(newStudent).catch((emailError) => {
       console.error("Registration email failed (non-critical):", emailError.message);
-    }
+    });
 
     return res.status(201).json({
       message: "Student registered successfully",
