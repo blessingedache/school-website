@@ -5,7 +5,7 @@ import {
   logoutUser,
   getAllUsers,
   getCurrentUser,
-} from "../controllers/studentcontroller.js";
+} from "../controllers/studentController.js";
 import { authMiddleware } from "../middlewares/authorization.js";
 
 const router = express.Router();
