@@ -2,7 +2,7 @@
   "name": "school-website-backend",
   "version": "1.0.0",
   "private":"true",
-  "type": "commonjs",
+  "type": "module",
   "description": "Backend API for student Signup/Signin forms",
   "main": "index.js",
   "scripts": {
