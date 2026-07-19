@@ -8,14 +8,12 @@ import { useNavigate } from "react-router-dom";
 import { SignupSkeleton } from "../../skeletons";
 import "../../styles/Signup.css";
 
-const env =
-  (typeof import.meta !== "undefined" && import.meta.env) ||
-  (typeof process !== "undefined" ? process.env : {});
-
-const API_BASE_URL = env.VITE_API_URL || env.REACT_APP_API_URL || "http://localhost:5000/api";
-const SIGNUP_ENDPOINT =
-  env.VITE_SIGNUP_ENDPOINT || env.REACT_APP_SIGNUP_ENDPOINT || "/auth/signup";
-const SIGNUP_URL = `${API_BASE_URL}${SIGNUP_ENDPOINT.startsWith("/") ? SIGNUP_ENDPOINT : `/${SIGNUP_ENDPOINT}`}`;
+// Single source of truth for the backend base URL.
+// Set VITE_API_BASE_URL in frontend/.env (local) and frontend/.env.production
+// (deployed), and also in Vercel's Environment Variables settings.
+// It must already include /api/v1, e.g. https://your-backend.onrender.com/api/v1
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+const SIGNUP_URL = `${API_BASE}/register`;
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -60,29 +58,43 @@ const Signup = () => {
       return;
     }
 
+    if (!API_BASE) {
+      setError(
+        "Server address is not configured. Please contact the site administrator."
+      );
+      console.error(
+        "VITE_API_BASE_URL is undefined. Check your .env / Vercel environment variables."
+      );
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      const payload = {
-        firstName: formData.firstName.trim(),
-        middleName: formData.middleName.trim(),
-        lastName: formData.lastName.trim(),
-        email: formData.email.trim(),
-        address: formData.address.trim(),
-        phone: formData.phone.trim(),
-        className: formData.className.trim(),
-        dob: formData.dob,
-        gender: formData.gender,
-        username: formData.username.trim(),
-        password: formData.password,
-      };
+      // Backend expects multipart/form-data because of the optional avatar upload
+      const payload = new FormData();
+      payload.append("firstName", formData.firstName.trim());
+      payload.append("middleName", formData.middleName.trim());
+      payload.append("lastName", formData.lastName.trim());
+      payload.append("email", formData.email.trim());
+      payload.append("address", formData.address.trim());
+      payload.append("phone", formData.phone.trim());
+      payload.append("className", formData.className.trim());
+      payload.append("dob", formData.dob);
+      payload.append("gender", formData.gender);
+      payload.append("username", formData.username.trim());
+      payload.append("password", formData.password);
+
+      const avatarFile = document.getElementById("avatar")?.files?.[0];
+      if (avatarFile) {
+        payload.append("avatar", avatarFile);
+      }
 
       const response = await fetch(SIGNUP_URL, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
+        body: payload,
+        // Do NOT set Content-Type manually for FormData —
+        // the browser sets the correct multipart boundary automatically.
       });
 
       const data = await response.json().catch(() => ({}));
@@ -91,11 +103,7 @@ const Signup = () => {
         throw new Error(data.message || data.error || "Signup failed.");
       }
 
-      if (data.token) {
-        localStorage.setItem("token", data.token);
-      }
-
-      const user = data.user || data.student || payload;
+      const user = data.student || data.user || null;
       if (user) {
         localStorage.setItem("student", JSON.stringify(user));
       }
@@ -310,7 +318,13 @@ const Signup = () => {
               <label className="signup-label" htmlFor="avatar">
                 Upload your picture
               </label>
-              <input id="avatar" className="signup-file" type="file" />
+              <input
+                id="avatar"
+                name="avatar"
+                className="signup-file"
+                type="file"
+                accept="image/jpeg,image/png,image/jpg"
+              />
             </div>
 
             <div className="signup-field">

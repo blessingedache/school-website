@@ -1,21 +1,20 @@
 import { useEffect, useState } from "react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import "../../styles/Signin.css";
 
-const env =
-  (typeof import.meta !== "undefined" && import.meta.env) ||
-  (typeof process !== "undefined" ? process.env : {});
-
-const API_BASE_URL = env.VITE_API_URL || env.REACT_APP_API_URL || "http://localhost:5000/api";
-const SIGNIN_ENDPOINT =
-  env.VITE_SIGNIN_ENDPOINT || env.REACT_APP_SIGNIN_ENDPOINT || "/auth/signin";
-const SIGNIN_URL = `${API_BASE_URL}${SIGNIN_ENDPOINT.startsWith("/") ? SIGNIN_ENDPOINT : `/${SIGNIN_ENDPOINT}`}`;
+// Single source of truth for the backend base URL.
+// Set VITE_API_BASE_URL in frontend/.env (local) and frontend/.env.production
+// (deployed), and also in Vercel's Environment Variables settings.
+// It must already include /api/v1, e.g. https://your-backend.onrender.com/api/v1
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+const SIGNIN_URL = `${API_BASE}/login`;
 
 const Signin = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    identifier: "",
+    username: "",
     password: "",
   });
 
@@ -32,8 +31,18 @@ const Signin = () => {
     event.preventDefault();
     setError("");
 
-    if (!formData.identifier.trim() || !formData.password.trim()) {
-      setError("Please enter your username/email and password.");
+    if (!formData.username.trim() || !formData.password.trim()) {
+      setError("Please enter your username and password.");
+      return;
+    }
+
+    if (!API_BASE) {
+      setError(
+        "Server address is not configured. Please contact the site administrator."
+      );
+      console.error(
+        "VITE_API_BASE_URL is undefined. Check your .env / Vercel environment variables."
+      );
       return;
     }
 
@@ -45,8 +54,9 @@ const Signin = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include", // required to receive the httpOnly auth cookie
         body: JSON.stringify({
-          identifier: formData.identifier.trim(),
+          username: formData.username.trim(),
           password: formData.password,
         }),
       });
@@ -57,11 +67,7 @@ const Signin = () => {
         throw new Error(data.message || data.error || "Login failed.");
       }
 
-      if (data.token) {
-        localStorage.setItem("token", data.token);
-      }
-
-      const user = data.user || data.student || { username: formData.identifier.trim() };
+      const user = data.user || null;
       if (user) {
         localStorage.setItem("student", JSON.stringify(user));
       }
@@ -90,54 +96,61 @@ const Signin = () => {
   return (
     <section className="signin-page">
       <div className="signin-card">
-        <h1>Welcome back</h1>
-        <p>Sign in to your student account</p>
+        <div className="signin-hero">
+          <h1>Welcome back</h1>
+          <p>
+            Sign in to access your student dashboard, view updates, and stay
+            connected with your school community.
+          </p>
+        </div>
 
-        <form className="signin-form" onSubmit={handleSubmit}>
-          {error && <p className="signin-error">{error}</p>}
+        <div className="signin-form-wrap">
+          <form className="signin-form" onSubmit={handleSubmit}>
+            {error && <p className="signin-error">{error}</p>}
 
-          <div className="signin-field">
-            <label className="signin-label" htmlFor="identifier">
-              Username or Email
-            </label>
-            <div className="signin-input-wrap">
-              <FaUserAlt className="signin-icon" />
-              <input
-                id="identifier"
-                name="identifier"
-                className="signin-input"
-                type="text"
-                placeholder="Enter your username or email"
-                value={formData.identifier}
-                onChange={handleChange}
-                required
-              />
+            <div className="signin-field">
+              <label className="signin-label" htmlFor="username">
+                Username
+              </label>
+              <div className="signin-input-wrap">
+                <FaUserAlt className="signin-icon" />
+                <input
+                  id="username"
+                  name="username"
+                  className="signin-input"
+                  type="text"
+                  placeholder="Enter your username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             </div>
-          </div>
 
-          <div className="signin-field">
-            <label className="signin-label" htmlFor="password">
-              Password
-            </label>
-            <div className="signin-input-wrap">
-              <FaLock className="signin-icon" />
-              <input
-                id="password"
-                name="password"
-                className="signin-input"
-                type="password"
-                placeholder="Enter your password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-              />
+            <div className="signin-field">
+              <label className="signin-label" htmlFor="password">
+                Password
+              </label>
+              <div className="signin-input-wrap">
+                <FaLock className="signin-icon" />
+                <input
+                  id="password"
+                  name="password"
+                  className="signin-input"
+                  type="password"
+                  placeholder="Enter your password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             </div>
-          </div>
 
-          <button type="submit" className="signin-button" disabled={isSubmitting}>
-            {isSubmitting ? "Signing In..." : "Sign In"}
-          </button>
-        </form>
+            <button type="submit" className="signin-button" disabled={isSubmitting}>
+              {isSubmitting ? "Signing In..." : "Sign In"}
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   );
